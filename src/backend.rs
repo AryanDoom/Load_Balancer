@@ -12,9 +12,8 @@ impl Backend {
 
         let backend = Self {
             id: backend_id,
-            address: backend_address,
+            address: backend_address, //basically the ip address plus a port number of the server sum bs like 222.0.0.1:6969
         };
-
-        backend
+        backend // main func call for creating a new backend 
     }
 }
