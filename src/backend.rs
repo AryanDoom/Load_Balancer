@@ -4,6 +4,7 @@ use std::net::SocketAddr;
 pub struct Backend {
     pub id: String,
     pub address: SocketAddr,
+    pub is_healthy: bool,
 }
 
 impl Backend {
@@ -13,7 +14,8 @@ impl Backend {
         let backend = Self {
             id: backend_id,
             address: backend_address, //basically the ip address plus a port number of the server sum bs like 222.0.0.1:6969
+            is_healthy: true,
         };
-        backend // main func call for creating a new backend 
+        backend // main func call for creating a new backend
     }
 }
