@@ -1,11 +1,13 @@
-use std::net::SocketAddr;
 use crate::backend::Backend;
+use std::net::SocketAddr;
 #[derive(Debug)]
-pub struct Config { //config ios the struct that holds the config for the lb to run, it holds the listener address and the list of backends
+pub struct Config {
+    //config ios the struct that holds the config for the lb to run, it holds the listener address and the list of backends
     pub listener_address: SocketAddr,
     pub backends: Vec<Backend>,
 }
 
+//all the initialization and validation functions for the config struct
 impl Config {
     pub fn new(listener_address: SocketAddr, backends: Vec<Backend>) -> Self {
         let config = Self {
@@ -15,7 +17,7 @@ impl Config {
 
         config
     }
-
+    //to check if the confid is valid or nah
     pub fn validate(&self) -> Result<(), String> {
         if self.backends.is_empty() {
             return Err("add at least one backend before starting the load balancer".to_owned());
