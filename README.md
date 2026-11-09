@@ -10,7 +10,7 @@ When the project is finished, the TCP load balancer should:
 
 - Read its listener, backend servers, scheduling choice, health checks, and limits from a TOML config file.
 - Accept client TCP connections and choose a healthy backend for each connection.
-- Support round robin and least connections scheduling.
+- Support round robin, weighted round robin, least connections, IP hash, and random scheduling.
 - Forward bytes between the client and backend without changing or inspecting them.
 - Handle connection setup failures, disconnects, half-closes, timeouts, and graceful shutdown.
 - Keep connection counts accurate and stop accepting work when configured limits are reached.
@@ -38,8 +38,8 @@ The backend picker will not handle network traffic. The connection handler will 
 
 ## Current status
 
-The project is under construction. The backend address type and round-robin scheduler are the first building blocks. The listener, TCP forwarding, configuration, health checks, metrics, and integration tests have not been added yet.
+The project is under construction. The backend model and registry, basic config validation, all five schedulers (round robin, weighted round robin, least connections, IP hash, and random), TCP listener, proxy handler, and the async server loop with per-client tasks and active-connection tracking are in place. A binary entry point (`main.rs`), TOML file loading, background health checks, graceful shutdown, metrics, and integration tests still need to be added.
 
 ## Running
 
-Run instructions will be added once the first working TCP proxy milestone is complete.
+The crate currently builds as a library only (`cargo build`), so there is no binary to launch yet. Run instructions will be added once the `main.rs` and TOML config milestone is complete.
